@@ -64,7 +64,7 @@ public static class Logic
 			long time = DateTime.Now.Ticks - start;
 			Console.WriteLine("Played: "+ pl + ", Win/Loss: "+ win + ", Time taken: "+ time);
 			Console.WriteLine("\n");
-			Write(pl, cpu, time);
+			Write(pl, win, time);
 		}
 	}
 
