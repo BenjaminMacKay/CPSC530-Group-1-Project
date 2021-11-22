@@ -18,7 +18,7 @@ public static class Logic
 	{
 		int win = Math.Abs(computer - player) switch
 		{
-			0 => 0,
+			0 => 2,
 			1 when player > computer => 1,
 			1 when player < computer => 0,
 			_ when player > computer => 0,
@@ -45,11 +45,20 @@ public static class Logic
 	//For testing purposes
 	static void Main()
 	{
+		String input;
 		while (true)
 		{
 			long start = DateTime.Now.Ticks;
 			Console.WriteLine("Enter option for player (Rock=0, Paper=1, Scissors=2)");
-			int pl = int.Parse(Console.ReadLine());
+
+            while (true)
+            {
+				input = Console.ReadLine();
+				if (input == "0" || input == "1" || input == "2") break;
+				Console.WriteLine("Please provide a valid input.");
+			}
+
+			int pl = int.Parse(input);
 
 			//Console.WriteLine("Enter option for computer (Rock=0, Paper=1, Scissors=2)");
 			//int cpu = int.Parse(Console.ReadLine());
@@ -58,13 +67,15 @@ public static class Logic
 			Console.WriteLine("Computer played: " + (RPS)cpu);
 
 			int win = CheckWin(pl, cpu);
-			Console.WriteLine("Result (1 = Player win, 0 = CPU win): " + win);
+			Console.WriteLine("Result (1 = Player win, 0 = CPU win, 2 = Tie): " + win);
 			Console.WriteLine("\n");
+
 
 			long time = DateTime.Now.Ticks - start;
 			Console.WriteLine("Played: "+ pl + ", Win/Loss: "+ win + ", Time taken: "+ time);
 			Console.WriteLine("\n");
-			Write(pl, win, time);
+			
+			if(win!=2) Write(pl, win, time);
 		}
 	}
 
