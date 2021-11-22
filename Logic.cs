@@ -75,7 +75,7 @@ public static class Logic
 			Console.WriteLine("Played: "+ pl + ", Win/Loss: "+ win + ", Time taken: "+ time);
 			Console.WriteLine("\n");
 			
-			if(win!=2) Write(pl, win, time);
+			Write(pl, win, time);
 		}
 	}
 
