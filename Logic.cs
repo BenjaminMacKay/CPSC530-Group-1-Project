@@ -42,6 +42,33 @@ public static class Logic
 		file.Close();
 	}
 
+	public static void ReadandOutput(string fn)
+    {
+		string line, output = "";
+		StreamReader sr = new StreamReader(fn);
+		while((line = sr.ReadLine()) != null)
+		{
+			string[] parts = line.Split(' ');
+			int pl = int.Parse(parts[0]);
+			int win = int.Parse(parts[1]);
+			int time = int.Parse(parts[2]);
+
+			output += Algo(pl, win, time);
+        }
+		Console.WriteLine("\nBinary String: \n"+output + "\n");
+		sr.Close();
+    }
+
+	public static string Algo(int pl, int win, int time)
+	{
+		string x = ((pl + win + time) & 1) switch
+		{
+			0 => "0",
+			1 => "1"
+		};
+		return x;
+	}
+
 	//For testing purposes
 	static void Main()
 	{
@@ -49,34 +76,38 @@ public static class Logic
 		while (true)
 		{
 			long start = DateTime.Now.Ticks;
-			Console.WriteLine("Enter option for player (Rock=0, Paper=1, Scissors=2)");
+			Console.WriteLine("Enter option for player (Rock=0, Paper=1, Scissors=2, Output current binary string=4)");
 
             while (true)
             {
 				input = Console.ReadLine();
-				if (input == "0" || input == "1" || input == "2") break;
+				if (input == "0" || input == "1" || input == "2" || input == "4") break;
 				Console.WriteLine("Please provide a valid input.");
 			}
 
-			int pl = int.Parse(input);
+			if(input != "4")
+			{
+				int pl = int.Parse(input);
 
-			//Console.WriteLine("Enter option for computer (Rock=0, Paper=1, Scissors=2)");
-			//int cpu = int.Parse(Console.ReadLine());
-			int cpu = CPUPlay();
-			Console.WriteLine("You Played: " + (RPS)pl);
-			Console.WriteLine("Computer played: " + (RPS)cpu);
+				//Console.WriteLine("Enter option for computer (Rock=0, Paper=1, Scissors=2)");
+				//int cpu = int.Parse(Console.ReadLine());
+				int cpu = CPUPlay();
+				Console.WriteLine("You Played: " + (RPS)pl);
+				Console.WriteLine("Computer played: " + (RPS)cpu);
 
-			int win = CheckWin(pl, cpu);
-			Console.WriteLine("Result (1 = Player win, 0 = CPU win, 2 = Tie): " + win);
-			Console.WriteLine("\n");
+				int win = CheckWin(pl, cpu);
+				Console.WriteLine("Result (1 = Player win, 0 = CPU win, 2 = Tie): " + win);
+				Console.WriteLine("\n");
 
 
-			long time = DateTime.Now.Ticks - start;
-			Console.WriteLine("Played: "+ pl + ", Win/Loss: "+ win + ", Time taken: "+ time);
-			Console.WriteLine("\n");
-			
-			Write(pl, win, time);
+				long time = DateTime.Now.Ticks - start;
+				Console.WriteLine("Played: " + pl + ", Win/Loss: " + win + ", Time taken: " + time);
+				Console.WriteLine("\n");
+
+				Write(pl, win, time);
+
+			}else ReadandOutput("data.txt");
+
 		}
 	}
-
 }
