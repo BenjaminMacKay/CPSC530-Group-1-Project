@@ -1,3 +1,11 @@
+"""
+von Neumann extractor
+
+Purpose: used to extract a random binary string from entropy.
+
+To run: vonneumann.py data.txt
+"""
+
 import sys
 
 def vonneumann(bs):

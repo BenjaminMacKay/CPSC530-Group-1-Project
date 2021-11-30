@@ -1,3 +1,11 @@
+"""
+min-entropy extractor
+
+Purpose: used to calculate min-entropy.
+
+To run: minentropy.py data.txt
+"""
+
 import sys
 import math
 import collections
