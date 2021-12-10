@@ -8,3 +8,5 @@ Results of a single game are appended to 'data.txt' contained in the same direct
 
 .NET 6.0 or greater required to run.
 To use, extract .zip to desired directory and run.
+
+Download includes sample data and generated randomness files, several statistical tests, and the Von Neumann extractor.
