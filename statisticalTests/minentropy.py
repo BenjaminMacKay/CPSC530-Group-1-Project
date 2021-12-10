@@ -45,4 +45,4 @@ print("p1 =", p1)
 
 minEntropy = -1*math.log(max(p0,p1),2)
 
-print("\nThe min entropy is %f.\n" %minEntropy)
+print("\nThe min entropy is %f bits.\n" %minEntropy)

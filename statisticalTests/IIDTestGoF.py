@@ -92,10 +92,12 @@ for s in Sd:    # using the unique list
 
 # DETERMINING TEST SUCCESS
 print("\nDETERMINING TEST SUCCESS")
-crit = 27.887
+degFreedom = 9  # hard-coded
+crit = 27.887   # hard-coded
 
-print("\tT = %5f." %T)
-print("\tCritical value = %5f." %(crit))
+print("\tT = %.5f." %T)
+print("\tdegrees of freedom = %d." %(degFreedom))
+print("\tCritical value = %.3f." %(crit))
 
 if (T > crit):
     print("\n\tThe test has failed. Therefore, the distribution of ones doesn't remain the same throughout the sequence.")

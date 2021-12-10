@@ -112,10 +112,12 @@ for b in dupsUnique:    # using the unique list
 
 # DETERMINING TEST SUCCESS
 print("\nDETERMINING TEST SUCCESS")
-crit = (2**m)-2
+degFreedom = (2**m)-2
+crit = 59.703   # hard-coded
 
-print("\tT = %5f." %T)
-print("\tCritical value = %5f." %(crit))
+print("\tT = %.5f." %T)
+print("\tdegrees of freedom = %d." %(degFreedom))
+print("\tCritical value (type I error is 0.001) = %.3f." %crit)
 
 if (T > crit):
     print("\n\tThe test has failed. Therefore, the values are not independent.")
