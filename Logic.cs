@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 public static class Logic
 {
-
+	//Encodes the three possible hands in a game of RPS
 	public enum RPS
 	{
 		Rock, Paper, Scissors
@@ -27,6 +27,7 @@ public static class Logic
 		return win;
 	}
 
+	//Generates a random RPS hand utilizing simple PRNG 
 	public static int CPUPlay()
     {
 		Random rand = new Random();
@@ -34,6 +35,11 @@ public static class Logic
 		return rand.Next() % 3;
     }
 
+	/** Write: Writes a line of data to 'data.txt'
+	 *  int pl: The hand used by the player
+	 *  int win: The outcome of the game
+	 *  long time: The time taken in a single game, stored in ticks
+	 */
 	public static void Write(int pl, int win, long time)
     {
 		String output = pl + " " + win + " " + time + "\n";
@@ -42,6 +48,12 @@ public static class Logic
 		file.Close();
 	}
 
+	/** ReadandOutput: A hastily written function that will take in all data contained in 'fn' and print a string to console according to the odd-even algorithm
+	 *  string fn: The name of a txt file containing data formatted by write(), value will typically be 'data.txt'
+	 *  
+	 *  NOTE: This function will crash the program if 'fn' does not exist, error handling was not deemed necessary
+	 *        as the three members of this group will never use this function unless 'fn' exists
+	 */
 	public static void ReadandOutput(string fn)
     {
 		string line, output = "";
@@ -59,6 +71,12 @@ public static class Logic
 		sr.Close();
     }
 
+	/** Algo: Performs the simple process of adding pl, win, and time together, and then determining if the resulting value is even or odd
+	 *  int pl: The hand chosen by the player
+	 *  int win: The result of the game
+	 *  int time: The time taken for a single game
+	 *  Outputs x: The result of the above described algorithm
+	 */
 	public static string Algo(int pl, int win, int time)
 	{
 		string x = ((pl + win + time) & 1) switch
@@ -69,7 +87,9 @@ public static class Logic
 		return x;
 	}
 
-	//For testing purposes
+	//When run as main this program will allow the user to play a simple game of RPS against a pseudo-random opponent,
+	//at any time the option '4' can be used to produce a binary string based off of Algo().
+	//The program must be manually exited, otherwise it will loop continuously.
 	static void Main()
 	{
 		String input;
@@ -89,8 +109,6 @@ public static class Logic
 			{
 				int pl = int.Parse(input);
 
-				//Console.WriteLine("Enter option for computer (Rock=0, Paper=1, Scissors=2)");
-				//int cpu = int.Parse(Console.ReadLine());
 				int cpu = CPUPlay();
 				Console.WriteLine("You Played: " + (RPS)pl);
 				Console.WriteLine("Computer played: " + (RPS)cpu);
